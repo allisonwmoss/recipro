@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import RecipeThumbnail from './RecipeThumbnail'
+import { CardGroup } from 'reactstrap'
 
 const recipes = [
     {
@@ -84,7 +85,7 @@ export default function RecipesList() {
     }, [])
 
     return (
-        <div>
+        <CardGroup>
             {
                 genRecipes.map((recipe, idx) => {
                     return (
@@ -92,7 +93,7 @@ export default function RecipesList() {
                     )
                 })
             }
-        </div>
+        </CardGroup>
     )
 }
 
