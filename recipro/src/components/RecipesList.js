@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import RecipeThumbnail from './RecipeThumbnail'
 
 const recipes = [
     {
@@ -59,57 +60,39 @@ const recipes = [
     },
 ]
 
-// const diceRoll = (recipes, newRecipesList) => {
-//     for (let i = 0; i < 7; i++) {
-//         let recipeToPush = diceRoll(recipes)
-//         if (newRecipesList.includes(recipeToPush)) {
-//             diceRoll(recipes)
-//         } else {
-//             newRecipesList.push(recipeToPush)
-//         }
-//     }
-//     let randomInd = Math.ceil(Math.random() * recipes.length - 1)
-//     let randRecipe = recipes[randomInd]
-//     return randRecipe
-// }
+const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 
 const randomizer = (recipes, randArr, j) => {
-    console.log(`------running randomizer attempt ${j}-------`)
     let randInd = Math.floor(Math.random() * recipes.length)
-    console.log(`attempt ${j}, randInd is ${randInd}`)
     let newRecipe = recipes[randInd]
-
     if (!randArr.includes(newRecipe)) {
-        // console.log(`randArr does not include ${newRecipe.recipeName}, adding to randArr`)
         randArr.push(newRecipe)
     } else {
-        // console.log(`${newRecipe.recipeName} is a duplicate, running again`)
         randomizer(recipes, randArr, j + 1)
     }
-    // randArr.push(randInd)
 }
 
-
-export default function RecipesList(props) {
+export default function RecipesList() {
+    const [genRecipes, setGenRecipes] = useState([])
     useEffect(() => {
         let randArr = []
         for (let i = 0; i < recipes.length - 1; i++) {
             randomizer(recipes, randArr, i)
         }
-        console.log(`done`)
-        console.log(randArr)
-        // let newRecipesList = []
-        // diceRoll(recipes, newRecipesList)
-        // console.log(newRecipesList)
-    })
+        // console.log(randArr)
+        setGenRecipes(randArr)
+    }, [])
+
+    return (
+        <div>
+            {
+                genRecipes.map((recipe, idx) => {
+                    return (
+                        <RecipeThumbnail recipe={recipe} key={idx} day={days[idx]} />
+                    )
+                })
+            }
+        </div>
+    )
 }
 
-
-//what do I need to do?
-//I need an empty array to hold my randomly chosen recipes
-//and I need a loop that executes 7 times 
-//then I need a function that rolls a die and returns a number
-//and then chooses the recipe from the recipe database that is located at that index in the array
-//and runs a check to determine if that recipe already exists in the newRecipesList 
-    //if that recipe already exists in the new recipes list, it should NOT be added and the die should be rolled again
-    //if the recipe does not already exist in the new recipes list, it should be pushed to the array
