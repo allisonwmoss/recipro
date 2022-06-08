@@ -2,12 +2,12 @@ import './App.css';
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
 import RecipesList from './components/RecipesList';
+import Header from './components/Header';
 
 function App() {
   return (
     <div className="App">
-      <h1>Recipro</h1>
-      <h2>Meal planning, oh-so-simplified.</h2>
+      <Header />
       <div className="btn btn-dark">get started</div>
       <RecipesList />
     </div>
