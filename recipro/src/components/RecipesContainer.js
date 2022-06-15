@@ -73,7 +73,7 @@ const randomizer = (recipes, randArr, j) => {
     }
 }
 
-export default function RecipesList() {
+export default function RecipesContainer() {
     const [genRecipes, setGenRecipes] = useState([])
     useEffect(() => {
         let randArr = []
@@ -85,15 +85,17 @@ export default function RecipesList() {
     }, [])
 
     return (
-        <CardGroup>
-            {
-                genRecipes.map((recipe, idx) => {
-                    return (
-                        <RecipeThumbnail recipe={recipe} key={idx} day={days[idx]} />
-                    )
-                })
-            }
-        </CardGroup>
+        <div className="container">
+            <CardGroup>
+                {
+                    genRecipes.map((recipe, idx) => {
+                        return (
+                            <RecipeThumbnail recipe={recipe} key={idx} day={days[idx]} />
+                        )
+                    })
+                }
+            </CardGroup>
+        </div>
     )
 }
 
