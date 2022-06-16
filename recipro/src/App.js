@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom'
 
 //components
 import RecipesContainer from './components/RecipesContainer';
+import AllRecipes from './components/AllRecipes';
 import Header from './components/Header';
 import Homepage from './components/Homepage';
 
@@ -14,7 +15,7 @@ function App() {
       <div className="container">
         <Routes>
           <Route path="/" element={<Homepage />} />
-          <Route path="/generate" element={<RecipesContainer />} />
+          <Route path="/recipes" element={<AllRecipes />} />
         </Routes>
       </div>
     </Router>

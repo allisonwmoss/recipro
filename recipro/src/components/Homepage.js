@@ -6,7 +6,7 @@ export default function Homepage() {
     return (
         <div className="container">
             <Header />
-            <Link to="/generate" className="btn btn-dark">get started</Link>
+            <Link to="/recipes" className="btn btn-dark">get started</Link>
         </div>
     )
 }
